@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -21,12 +22,19 @@ public class ModuleController {
         this.moduleService.saveModule(moduleEntity);
     }
 
-    @DeleteMapping
-    public void deleteModule(@RequestBody ModuleEntity moduleEntity){
-        this.moduleService.deleteModule(moduleEntity);
+    @DeleteMapping("/{id}")
+    public void deleteModule(@PathVariable Long id){
+        this.moduleService.deleteModule(id);
     }
-
-    @GetMapping("/all")
+    @DeleteMapping
+    public void deleteAllModules(){
+        this.moduleService.deleteAllModules();
+    }
+    @GetMapping("/{id}")
+    public Optional<ModuleEntity> findModule(@PathVariable Long id){
+        return this.moduleService.findModule(id);
+    }
+    @GetMapping
     public List<ModuleEntity> findAllModules(){
         return this.moduleService.findAll();
     }

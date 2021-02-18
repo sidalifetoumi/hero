@@ -19,11 +19,8 @@ public class CourEntity {
 
     private String type;
 
-    private String title;
-
     private String text;
 
-    private String link;
 
     @JsonBackReference
     @ManyToOne

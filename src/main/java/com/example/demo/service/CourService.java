@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourService {
@@ -15,11 +16,21 @@ public class CourService {
     private CourRepository courRepository;
 
 
-    public void save(CourEntity courEntity){
+    public void saveCour(CourEntity courEntity){
         this.courRepository.save(courEntity);
     }
-    public void delete(CourEntity courEntity){this.courRepository.delete(courEntity);}
-    public List<CourEntity> findAll(){
+
+    public void deleteCour(Long id){
+        this.courRepository.deleteById(id);
+    }
+    public void deleteAllCours(){
+        this.courRepository.deleteAll();
+    }
+    public Optional<CourEntity> findCour(Long id){
+        return this.courRepository.findById(id);
+    }
+
+    public List<CourEntity> findAllCours(){
         return this.courRepository.findAll();
     }
 }
